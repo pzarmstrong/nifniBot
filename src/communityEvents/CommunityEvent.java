@@ -2,8 +2,6 @@ package communityEvents;
 
 import java.util.Date;
 
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-
 public class CommunityEvent
 {
     /**

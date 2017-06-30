@@ -19,12 +19,10 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.requests.RestAction;
 import utils.DefaultResponses;
 
 public class MessageListener extends ListenerAdapter
@@ -143,6 +141,7 @@ public class MessageListener extends ListenerAdapter
         {
             e.printStackTrace();
         }
+        return;
     }
     
     @SuppressWarnings("unchecked")
