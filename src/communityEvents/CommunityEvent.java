@@ -1,5 +1,6 @@
 package communityEvents;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class CommunityEvent
@@ -13,25 +14,25 @@ public class CommunityEvent
      * Event Author
      */
     
-    private Date dateOfEvent;
+    private LocalDateTime dateOfEvent;
     private String eventName;
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
     private String eventAuthor;
     
-    public CommunityEvent(Date dateOfEvent, String name, String author)
+    public CommunityEvent(LocalDateTime dateOfEvent, String name, String author)
     {
         this.dateOfEvent = dateOfEvent;
-        this.dateCreated = new Date();
+        this.dateCreated = LocalDateTime.now();
         this.eventName = name;
         this.eventAuthor = author;
     }
     
-    public Date getDateOfEvent()
+    public LocalDateTime getDateOfEvent()
     {
         return dateOfEvent;
     }
     
-    public Date getDateCreated()
+    public LocalDateTime getDateCreated()
     {
         return dateCreated;
     }

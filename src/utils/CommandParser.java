@@ -2,6 +2,8 @@ package utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,23 +28,22 @@ public class CommandParser
         return args;
     }
     
-    public Date parseDateString(String format, String raw)
+    public LocalDateTime parseDateString(String pattern, String raw)
     {
-        Date date = null;
+        LocalDateTime date = null;
+        
         try
         {
-            SimpleDateFormat sdf = new SimpleDateFormat(format);
-            date = sdf.parse(raw);
-            if (!raw.equals(sdf.format(date)))
-            {
-                date = null;
-            }
+            System.out.println(raw + "\n" +  pattern);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
+            date = LocalDateTime.parse(raw, format);
+            
         }
-        catch (ParseException e)
+        catch (Exception e) 
         {
-            return date;
+            e.printStackTrace();
         }
-
+        
         return date;
     }
     

@@ -1,5 +1,6 @@
 package communityEvents;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ListIterator;
@@ -63,7 +64,7 @@ public class EventManager
             return "An event already exists by that name. Please choose a different name.";
         }
         
-        Date d = cp.parseDateString("HH:mm-dd/MM/yy", args[1]);
+        LocalDateTime d = cp.parseDateString("HH:mm-dd/MM/yy", args[1]);
         if (d == null)
         {
             System.out.println("Date format was invalid.");
@@ -86,7 +87,7 @@ public class EventManager
         String name = args[0];
         String author = m.getAuthor().getName();
         
-        Date d = cp.parseDateString("HH:mm-dd/MM/yy", args[1]);
+        LocalDateTime d = cp.parseDateString("HH:mm-dd/MM/yy", args[1]);
         if (d == null)
         {
             System.out.println("Date format was invalid.");

@@ -3,6 +3,8 @@ package nifniBot;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
@@ -101,10 +103,26 @@ public class MessageListener extends ListenerAdapter
             }
             else if(msg.equals("!listEvents") || msg.equals("!events"))
             {
-                channel.sendMessage("Upcoming Events").queue();
+                String sformat = "%-40s%-40s%-40s";
+                String titles = String.format(sformat, "__Name__","__Date-Time__","__Time Until__");
+                channel.sendMessage(
+                        "__**Upcoming Events**__\n"
+                        + titles //"__Name__ \t|\t __Date & Time__ \t|\t __Time Until__"
+                        ).queue();
                 for (CommunityEvent ce : eMan.getCommunityEvents())
                 {
-                    channel.sendMessage(ce.getEventName() + "\t-\t" + ce.getDateOfEvent().toString()).queue();
+                    long hoursTil = ChronoUnit.HOURS.between(ce.getDateCreated(), ce.getDateOfEvent()); 
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-dd/MM/yy");
+                    String s = String.format(sformat, ce.getEventName(), ce.getDateOfEvent().format(formatter), hoursTil + " hours");
+                    channel.sendMessage(s).queue();
+                    
+//                    channel.sendMessage(
+//                                ce.getEventName() 
+//                                + "\t|\t" 
+//                                + ce.getDateOfEvent().format(formatter) 
+//                                + "\t|\t" 
+//                                + hoursTil + " hours"
+//                            ).queue();
                 }
             }
             else if(msg.contains("!deleteEvent") || msg.contains("!removeEvent"))
